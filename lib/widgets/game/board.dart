@@ -5,7 +5,6 @@ import 'package:fifteenpuzzle/data/chip.dart';
 import 'package:fifteenpuzzle/widgets/game/chip.dart';
 import 'package:flutter/material.dart' hide Chip;
 import 'package:flutter/widgets.dart';
-import 'package:swipe_gesture_recognizer/swipe_gesture_recognizer.dart';
 
 class BoardWidget extends StatefulWidget {
   final Board board;
@@ -489,19 +488,21 @@ class _BoardWidgetState extends State<BoardWidget>
       width: widget.size,
       height: widget.size,
       child: widget.onSwipe != null
-          ? SwipeGestureRecognizer(
+          ? GestureDetector(
               child: boardStack,
-              onSwipeLeft: () {
-                widget.onSwipe(Point(-1, 0));
+              onVerticalDragEnd: (DragEndDetails details) {
+                if (details.primaryVelocity < 0) {
+                  widget.onSwipe(Point(0, -1));
+                } else if (details.primaryVelocity > 0) {
+                  widget.onSwipe(Point(0, 1));
+                }
               },
-              onSwipeRight: () {
-                widget.onSwipe(Point(1, 0));
-              },
-              onSwipeUp: () {
-                widget.onSwipe(Point(0, -1));
-              },
-              onSwipeDown: () {
-                widget.onSwipe(Point(0, 1));
+              onHorizontalDragEnd: (details) {
+                if (details.primaryVelocity > 0) {
+                  widget.onSwipe(Point(1, 0));
+                } else if (details.primaryVelocity < 0) {
+                  widget.onSwipe(Point(-1, 0));
+                }
               },
             )
           : null,
