@@ -4,11 +4,9 @@ import 'package:flutter/material.dart' hide Chip;
 class ChipWidget extends StatelessWidget {
   final Chip chip;
 
-  final Function onPressed;
-
-  final Color overlayColor;
-
   final Color backgroundColor;
+
+  final double opacity;
 
   final double fontSize;
 
@@ -18,10 +16,9 @@ class ChipWidget extends StatelessWidget {
 
   ChipWidget(
     this.chip,
-    this.overlayColor,
     this.backgroundColor,
+    this.opacity,
     this.fontSize, {
-    @required this.onPressed,
     @required this.size,
     this.showNumber = true,
   });
@@ -36,21 +33,19 @@ class ChipWidget extends StatelessWidget {
 
     var color = Theme.of(context).cardColor;
     color = Color.alphaBlend(backgroundColor, color);
-    color = Color.alphaBlend(overlayColor, color);
 
-    return Padding(
-      padding: EdgeInsets.all(isCompact ? 2.0 : 4.0),
-      child: Material(
-        shape: shape,
-        color: color,
-        elevation: 1,
-        child: InkWell(
-          onTap: onPressed,
-          customBorder: shape,
+    return Opacity(
+      opacity: this.opacity,
+      child: Padding(
+        padding: EdgeInsets.all(isCompact ? 2.0 : 4.0),
+        child: Material(
+          shape: shape,
+          color: color,
+          elevation: 1,
           child: showNumber
               ? Center(
                   child: Text(
-                    '${chip.number + 1}',
+                    '${chip.score}',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: fontSize,

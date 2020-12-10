@@ -1,3 +1,4 @@
+import 'dart:collection';
 import 'dart:math';
 
 import 'package:fifteenpuzzle/data/point.dart';
@@ -12,37 +13,84 @@ class Board extends Serializable {
   /// example 4x4.
   final int size;
 
+  final int score;
+
   final List<Chip> chips;
 
-  final Point<int> blank;
+  Board(this.size, this.score, this.chips);
 
-  Board(this.size, this.chips, this.blank);
-
-  factory Board.createNormal(int size) =>
-      Board.create(size, (n) => Point(n % size, n ~/ size));
-
-  factory Board.create(int size, Point<int> Function(int) factory) {
-    final blank = factory(size * size - 1);
-    final chips = List<Chip>.generate(size * size - 1, (n) {
-      final point = factory(n);
-      return Chip(n, point, point);
+  factory Board.createEmpty(int size) {
+    final chips = List<Chip>.generate(size * size, (n) {
+      final point = Point(n % size, n ~/ size);
+      return Chip(n, 0, 0, point);
     });
-    return Board(size, chips, blank);
+    return Board(size, 0, chips);
+  }
+
+  int highestOne() {
+    var score = 0;
+    for (var chip in chips) {
+      if (chip.score > score) score = chip.score;
+    }
+    return score;
   }
 
   /// Returns `true` if all of the [chips] are in their
   /// target positions.
   bool isSolved() {
+    final set = LinkedHashSet();
     for (var chip in chips) {
-      if (chip.targetPoint != chip.currentPoint) return false;
+      if (set.contains(chip.score)) return false;
+      set.add(chip.score);
     }
     return true;
+  }
+
+  bool isEnded() {
+    for (var chip in chips) {
+      if (chip.score <= 0) return false;
+    }
+
+    List<List<Chip>> matrix = List.generate(size, (i) {
+      return List.generate(size, (j) {
+        return null;
+      });
+    });
+
+    chips.forEach((chip) {
+      matrix[chip.currentPoint.x][chip.currentPoint.y] = chip;
+    });
+
+    bool isTweenNeighbor(Chip chip, int x, int y) =>
+        chip.score == _getOrNull(matrix, x, y)?.score;
+
+    bool hasTweenNeighbors(int x, int y) {
+      final chip = matrix[x][y];
+      return isTweenNeighbor(chip, x + 1, y) ||
+          isTweenNeighbor(chip, x - 1, y) ||
+          isTweenNeighbor(chip, x, y + 1) ||
+          isTweenNeighbor(chip, x, y - 1);
+    }
+
+    for (var x = 0; x < size; x++) {
+      for (var y = 0; y < size; y++) {
+        if (hasTweenNeighbors(x, y)) return false;
+      }
+    }
+
+    return true;
+  }
+
+  Chip _getOrNull(List<List<Chip>> matrix, int x, int y) {
+    if (x < 0 || x >= size || y < 0 || y >= size) return null;
+    return matrix[x][y];
   }
 
   @override
   void serialize(SerializeOutput output) {
     output.writeInt(size);
-    output.writeSerializable(PointSerializableWrapper(blank));
+    output.writeInt(score);
+    output.writeInt(chips.length);
 
     for (final chip in chips) {
       output.writeSerializable(chip);
@@ -56,7 +104,9 @@ class BoardDeserializableFactory extends DeserializableHelper<Board> {
   @override
   Board deserialize(SerializeInput input) {
     final size = input.readInt();
-    if (size == null) {
+    final score = input.readInt();
+    final length = input.readInt();
+    if (size == null || score == null || length == null) {
       return null;
     }
 
@@ -69,7 +119,6 @@ class BoardDeserializableFactory extends DeserializableHelper<Board> {
     }
 
     final chips = List<Chip>();
-    final length = size * size - 1;
     for (var i = 0; i < length; i++) {
       final chip = input.readDeserializable(chipFactory);
       if (chip == null) {
@@ -80,6 +129,6 @@ class BoardDeserializableFactory extends DeserializableHelper<Board> {
     }
 
     // TODO: Verify if the loaded data is valid
-    return Board(size, chips, blank);
+    return Board(size, score, chips);
   }
 }

@@ -32,7 +32,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
     with WidgetsBindingObserver {
   static const TIME_STOPPED = 0;
 
-  static final _SALSA_KEY = encrypt.Key.fromUtf8('Ro9ndPUceXQQL8GS');
+  static final _SALSA_KEY = encrypt.Key.fromUtf8('3531662080279914');
   static final _SALSA_IV = encrypt.IV.fromUtf8('84bgee3v');
 
   static const _KEY_STATE = 'state';
@@ -102,8 +102,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
             board == null) {
       time = TIME_STOPPED;
       steps = 0;
-      // Initialize empty board with a classic
-      // pattern.
+      // Initialize empty board.
       const size = 4;
       board = _createBoard(size);
     }
@@ -115,7 +114,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
     });
   }
 
-  Board _createBoard(int size) => Board.createNormal(size);
+  Board _createBoard(int size) => game.spawn(Board.createEmpty(size));
 
   void playStop() {
     if (isPlaying()) {
@@ -132,8 +131,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
     setState(() {
       time = now;
       steps = 0;
-      board =
-          game.shuffle(game.hardest(board), amount: board.size * board.size);
+      board = _createBoard(board.size);
     });
   }
 
@@ -154,12 +152,17 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
     });
   }
 
-  void tap({@required Point<int> point}) {
+  void swipe({@required Point<int> point}) {
     assert(board != null);
     assert(point != null);
 
     setState(() {
-      board = game.tap(board, point: point);
+      final result = game.swipe(board, point: point);
+      if (!result.item1) {
+        // hasn't changed
+        return;
+      }
+      board = result.item2;
 
       if (isPlaying()) {
         // Increment the amount of steps.
@@ -167,12 +170,19 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
 
         // Stop if a user has solved the
         // board.
-        if (board.isSolved()) {
+        if (board.isEnded()) {
+          final highestOne = board.highestOne();
+          final isSolved = board.isSolved();
+          final isWin = highestOne >= 2048;
           final now = DateTime.now().millisecondsSinceEpoch;
           final result = Result(
             steps: steps,
             time: now - time,
             size: board.size,
+            score: board.score,
+            highestOne: highestOne,
+            isSolved: isSolved,
+            isWin: isWin,
           );
 
           widget.onSolve?.call(result);
@@ -197,8 +207,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
 
       var boardFuture;
       if (isPlaying()) {
-        boardFuture =
-            game.shuffle(game.hardest(board), amount: board.size * board.size);
+        boardFuture = _createBoard(board.size);
       } else {
         boardFuture = _createBoard(board.size);
       }

@@ -11,7 +11,7 @@ Game of Fifteen
 
 The Game of Fifteen (also called 15-puzzle, Gem Puzzle, Boss Puzzle, Mystic Square and many others) is a sliding puzzle that consists of a frame of numbered square tiles in random order with one tile missing. 
 
-<a href="https://play.google.com/store/apps/details?id=com.artemchep.fifteenpuzzle">
+<a href="https://play.google.com/store/apps/details?id=com.artemchep.twopowereleven">
   <img alt="Get Game of Fifteen on Google Play" vspace="20"
        src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="60" />
 </a>
@@ -19,7 +19,7 @@ The Game of Fifteen (also called 15-puzzle, Gem Puzzle, Boss Puzzle, Mystic Squa
   <img alt="Try online" vspace="20"
        src="https://github.com/AChep/15puzzle/raw/master/artwork/web_badge.png" height="60" />
 </a>
-<a href="https://snapcraft.io/fifteenpuzzle">
+<a href="https://snapcraft.io/twopowereleven">
   <img alt="Get Game of Fifteen for Linux from the Snap Store" vspace="20"
        src="https://github.com/snapcore/snap-store-badges/raw/master/EN/[EN]-snap-store-white.png" width="182px" />
 </a>

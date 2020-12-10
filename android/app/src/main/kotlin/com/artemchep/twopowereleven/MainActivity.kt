@@ -1,4 +1,4 @@
-package com.artemchep.fifteenpuzzle
+package com.artemchep.twopowereleven
 
 import android.os.Bundle
 import com.artemchep.flutter.gpg.PlayGamesPlugin

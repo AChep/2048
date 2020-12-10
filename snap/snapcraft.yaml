@@ -17,7 +17,7 @@ slots:
   transporter:
     interface: dbus
     bus: session
-    name: com.artemchep.fifteenpuzzle
+    name: com.artemchep.twopowereleven
 
 apps:
   fifteenpuzzle:

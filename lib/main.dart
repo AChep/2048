@@ -43,7 +43,7 @@ void _setTargetPlatformForDesktop() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final title = 'Game of Fifteen';
+    final title = 'Game of 2048';
     return _MyMaterialApp(title: title);
   }
 }

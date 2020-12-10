@@ -11,22 +11,33 @@ class Chip implements Serializable {
   /// from a zero.
   final int number;
 
-  final Point<int> targetPoint;
+  final int identity;
+
+  final int score;
 
   final Point<int> currentPoint;
 
   const Chip(
     this.number,
-    this.targetPoint,
+    this.identity,
+    this.score,
     this.currentPoint,
   );
 
-  Chip move(Point<int> point) => Chip(number, targetPoint, point);
+  Chip move(Point<int> point) => Chip(number, identity, score, point);
+
+  Chip upgrade(int score, {int identity}) => Chip(
+        number,
+        identity ?? this.identity,
+        score,
+        currentPoint,
+      );
 
   @override
   void serialize(SerializeOutput output) {
     output.writeInt(number);
-    output.writeSerializable(PointSerializableWrapper(targetPoint));
+    output.writeInt(identity);
+    output.writeInt(score);
     output.writeSerializable(PointSerializableWrapper(currentPoint));
   }
 }
@@ -39,8 +50,9 @@ class ChipDeserializableFactory extends DeserializableHelper<Chip> {
     final pd = PointDeserializableFactory();
 
     final number = input.readInt();
-    final targetPoint = input.readDeserializable(pd);
-    final currentPoint = input.readDeserializable(pd);
-    return Chip(number, targetPoint, currentPoint);
+    final identity = input.readInt();
+    final score = input.readInt();
+    final point = input.readDeserializable(pd);
+    return Chip(number, identity, score, point);
   }
 }

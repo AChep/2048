@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:fifteenpuzzle/config/ui.dart';
 import 'package:fifteenpuzzle/widgets/game/board.dart';
 import 'package:fifteenpuzzle/widgets/game/material/control.dart';
+import 'package:fifteenpuzzle/widgets/game/material/score.dart';
 import 'package:fifteenpuzzle/widgets/game/material/sheets.dart';
 import 'package:fifteenpuzzle/widgets/game/material/steps.dart';
 import 'package:fifteenpuzzle/widgets/game/material/stopwatch.dart';
@@ -52,8 +53,17 @@ class GameMaterialPage extends StatelessWidget {
                 ? 56.0
                 : 72.0,
           ),
-          GameStepsWidget(
-            steps: presenter.steps,
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              GameScoreWidget(
+                score: presenter.board.score,
+              ),
+              const SizedBox(width: 16.0),
+              GameStepsWidget(
+                steps: presenter.steps,
+              ),
+            ],
           ),
         ],
       );
@@ -77,8 +87,8 @@ class GameMaterialPage extends StatelessWidget {
                               const AppIcon(size: 24.0),
                               const SizedBox(width: 16.0),
                               Text(
-                                'Game of Fifteen',
-                                style: Theme.of(context).textTheme.title,
+                                'Game of 2048',
+                                style: Theme.of(context).textTheme.headline6,
                               ),
                             ],
                           ),
@@ -187,23 +197,15 @@ class GameMaterialPage extends StatelessWidget {
                   default:
                     return;
                 }
-                final tapPoint =
-                    presenter.board.blank + Point(offsetX, offsetY);
-                if (tapPoint.x < 0 ||
-                    tapPoint.x >= presenter.board.size ||
-                    tapPoint.y < 0 ||
-                    tapPoint.y >= presenter.board.size) {
-                  return;
-                }
-
-                presenter.tap(point: tapPoint);
+                final point = Point(offsetX, offsetY);
+                presenter.swipe(point: point);
               },
               child: BoardWidget(
                 isSpeedRunModeEnabled: config.isSpeedRunModeEnabled,
                 board: presenter.board,
                 size: puzzleSize,
-                onTap: (point) {
-                  presenter.tap(point: point);
+                onSwipe: (point) {
+                  presenter.swipe(point: point);
                 },
               ),
             );
@@ -218,22 +220,7 @@ class GameMaterialPage extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: <Widget>[
-        Container(
-          width: 48,
-          height: 48,
-          child: Material(
-            elevation: 0.0,
-            color: Colors.transparent,
-            shape: CircleBorder(),
-            child: InkWell(
-              onTap: () {
-                presenter.reset();
-              },
-              customBorder: CircleBorder(),
-              child: Icon(Icons.refresh),
-            ),
-          ),
-        ),
+        const SizedBox(width: 48.0, height: 48.0),
         const SizedBox(width: 16.0),
         GamePlayStopButton(
           isPlaying: presenter.isPlaying(),

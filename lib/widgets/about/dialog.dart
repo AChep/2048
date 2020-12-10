@@ -20,13 +20,12 @@ class AboutDialog extends StatelessWidget {
       title: Text('About'),
       children: <Widget>[
         HorizontalPadding(
-            const Text('Game of Fifteen is a free and open source app '
+            const Text('Game of 2048 is a free and open source app '
                 'written with Flutter. It features beautiful design and '
                 'smooth animations.')),
         const SizedBox(height: 8),
         HorizontalPadding(
-            const Text('You can compete with your friends online. '
-                'The complexity of puzzles is similar from game to game.')),
+            const Text('You can compete with your friends online. ')),
         const SizedBox(height: 24),
         ListTile(
           leading: Icon(Icons.code, size: 24),
@@ -52,9 +51,9 @@ class AboutDialog extends StatelessWidget {
             if (snapshot.data != null) {
               final buildVersion = snapshot.data.version;
               final buildNumber = snapshot.data.buildNumber;
-              text = 'Game of Fifteen v' + buildVersion + "-" + buildNumber;
+              text = 'Game of 2048 v' + buildVersion + "-" + buildNumber;
             } else {
-              text = 'Game of Fifteen, web version';
+              text = 'Game of 2048, web version';
             }
             return HorizontalPadding(
               Text(

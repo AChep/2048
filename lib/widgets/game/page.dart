@@ -35,7 +35,7 @@ class GamePage extends StatelessWidget {
     final playGames = PlayGamesContainer.of(context);
     playGames.submitScore(
       key: PlayGames.getLeaderboardOfSize(result.size),
-      time: result.time,
+      time: result.score,
     );
   }
 }

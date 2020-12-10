@@ -45,8 +45,8 @@ Widget createMoreBottomSheet(
                     );
 
                     return BoardWidget(
-                      board: Board.createNormal(size),
-                      onTap: null,
+                      board: Board.createEmpty(size),
+                      onSwipe: null,
                       showNumbers: false,
                       size: puzzleSize,
                     );

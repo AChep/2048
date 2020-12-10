@@ -17,10 +17,10 @@ class AppIcon extends StatelessWidget {
         color: Theme.of(context).primaryColor,
         child: Center(
           child: Text(
-            '15',
-            style: Theme.of(context).primaryTextTheme.title.copyWith(
+            '2¹¹',
+            style: Theme.of(context).primaryTextTheme.headline6.copyWith(
                   fontWeight: FontWeight.bold,
-                  fontSize: 14.0,
+                  fontSize: 12.0,
                 ),
           ),
         ),

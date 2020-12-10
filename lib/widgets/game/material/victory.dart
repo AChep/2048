@@ -18,13 +18,19 @@ class GameVictoryDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final timeFormatted = timeFormatter(result.time);
+    final phrase = result.isSolved
+        ? "solved"
+        : result.isWin
+        ? "successfully completed"
+        : "tried to complete";
     final actions = <Widget>[
       new FlatButton(
         child: new Text("Share"),
         onPressed: () {
-          Share.share("I have solved the Game of Fifteen's "
-              "${result.size}x${result.size} puzzle in $timeFormatted "
-              "with just ${result.steps} steps! Check it out: $URL_REPOSITORY");
+          Share.share("I have $phrase the Game of 2048's "
+              "${result.size}x${result.size} mode in $timeFormatted, reaching "
+              "as high as block ${result.highestOne} with "
+              "${result.steps} steps / ${result.score} score! Check it out: $URL_REPOSITORY");
         },
       ),
       new FlatButton(
@@ -53,15 +59,19 @@ class GameVictoryDialog extends StatelessWidget {
     return AlertDialog(
       title: Center(
         child: Text(
-          "Congratulations!",
-          style: Theme.of(context).textTheme.title,
+          result.isSolved
+              ? "You are amazing!"
+              : result.isWin
+                  ? "Congratulations!"
+                  : "Oh snap!",
+          style: Theme.of(context).textTheme.headline6,
         ),
       ),
       content: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
           Text(
-              "You've successfuly completed the ${result.size}x${result.size} puzzle"),
+              "You've $phrase the ${result.size}x${result.size} game, reaching as high as block ${result.highestOne}."),
           const SizedBox(height: 16),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -76,8 +86,24 @@ class GameVictoryDialog extends StatelessWidget {
                   ),
                   Text(
                     timeFormatted,
-                    style: Theme.of(context).textTheme.display1.copyWith(
-                          color: Theme.of(context).textTheme.body1.color,
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          color: Theme.of(context).textTheme.bodyText2.color,
+                        ),
+                  ),
+                ],
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  Text(
+                    'Score:',
+                    style: Theme.of(context).textTheme.caption,
+                  ),
+                  Text(
+                    '${result.score}',
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                   ),
                 ],
@@ -92,8 +118,8 @@ class GameVictoryDialog extends StatelessWidget {
                   ),
                   Text(
                     '${result.steps}',
-                    style: Theme.of(context).textTheme.display1.copyWith(
-                          color: Theme.of(context).textTheme.body1.color,
+                    style: Theme.of(context).textTheme.headline5.copyWith(
+                          color: Theme.of(context).textTheme.bodyText2.color,
                         ),
                   ),
                 ],

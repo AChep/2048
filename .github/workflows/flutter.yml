@@ -44,8 +44,8 @@ jobs:
     - name: Copy secrets
       run: |
         cd android/app
-        echo ${{ secrets.KEYSTORE_B64 }} | base64 -d | zcat >> 15puzzle-release.jks
-        echo ${{ secrets.KEYSTORE_PROPS_B64 }} | base64 -d | zcat >> 15puzzle-release.properties
+        echo ${{ secrets.KEYSTORE_B64 }} | base64 -d | zcat >> 2048-release.jks
+        echo ${{ secrets.KEYSTORE_PROPS_B64 }} | base64 -d | zcat >> 2048-release.properties
         cd ..
         cd ..
     - name: Upgrade flutter
@@ -70,7 +70,7 @@ jobs:
         git init
         git config user.name  "Artem Bot"
         git config user.email "artemchep@gmail.com"
-        git remote add origin https://${{ secrets.TOKEN }}@github.com/AChep/15puzzle.git
+        git remote add origin https://${{ secrets.TOKEN }}@github.com/AChep/2048.git
         git checkout -b gh-pages
         git add .
         git commit -m "Updated web build"
@@ -102,5 +102,5 @@ jobs:
       uses: r0adkll/upload-google-play@v1
       with:
         serviceAccountJsonPlainText: ${{ secrets.SERVICE_ACCOUNT }}
-        packageName: com.artemchep.fifteenpuzzle
+        packageName: com.artemchep.twopowereleven
         releaseFile: build/app/outputs/bundle/playstoreRelease/app-playstore-release.aab
