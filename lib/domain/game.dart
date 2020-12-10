@@ -107,9 +107,15 @@ class _GameImpl implements Game {
   Board spawn(Board board) {
     final slotPos = () {
       final freeChips = board.chips.where((chip) => chip.score <= 0).toList();
+      if (freeChips.length <= 0) {
+        return null;
+      }
       final freeChipsPos = _random.nextInt(freeChips.length);
       return freeChips[freeChipsPos].number;
     }();
+    if (slotPos == null) {
+      return board;
+    }
 
     final chipScore = _random.nextInt(10) == 0 ? 4 : 2;
     final chips = board.chips.toList();
