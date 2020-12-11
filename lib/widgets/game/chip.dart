@@ -1,4 +1,5 @@
 import 'package:fifteenpuzzle/data/chip.dart';
+import 'package:fifteenpuzzle/widgets/auto_size_text.dart';
 import 'package:flutter/material.dart' hide Chip;
 
 class ChipWidget extends StatelessWidget {
@@ -43,12 +44,17 @@ class ChipWidget extends StatelessWidget {
           color: color,
           elevation: 1,
           child: showNumber
-              ? Center(
-                  child: Text(
-                    '${chip.score}',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: fontSize,
+              ? Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Center(
+                    child: AutoSizeText(
+                      '${chip.score}',
+                      '${chip.score}',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: fontSize,
+                      ),
+                      maxLines: 1,
                     ),
                   ),
                 )
