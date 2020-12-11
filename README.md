@@ -11,6 +11,8 @@ Game of 2048
 The objective of the game is to slide numbered tiles on a grid to combine them to create a tile with the number 2048;
 however, one can continue to play the game after reaching the goal, creating tiles with larger numbers.
 
+The source code is based on the [Game of Fifteen][5].
+
 <a href="https://play.google.com/store/apps/details?id=com.artemchep.twopowereleven">
   <img alt="Get Game of 2048 on Google Play" vspace="20"
        src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="60" />
@@ -62,3 +64,4 @@ For more information on SemVer, please visit http://semver.org/.
 [2]: https://github.com/AChep/2048/issues?state=open
 [3]: https://github.com/AChep/2048/issues?state=closed
 [4]: https://github.com/AChep/2048/blob/master/LICENSE
+[5]: https://github.com/AChep/15puzzle
