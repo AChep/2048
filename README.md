@@ -1,21 +1,21 @@
-Game of Fifteen 
+Game of 2048
 ==========
 
 <img alt="Main screen: Light" align="right" height="400"
-   src="https://github.com/AChep/15puzzle/raw/master/screenshots/screenshot2.jpg" />
+   src="https://github.com/AChep/2048/raw/master/screenshots/screenshot2.jpg" />
 
 <img alt="Main screen: Dark" align="right" height="400"
-   src="https://github.com/AChep/15puzzle/raw/master/screenshots/screenshot1.jpg" />
+   src="https://github.com/AChep/2048/raw/master/screenshots/screenshot1.jpg" />
 
-*Puzzle game with Flutter?*
-
-The Game of Fifteen (also called 15-puzzle, Gem Puzzle, Boss Puzzle, Mystic Square and many others) is a sliding puzzle that consists of a frame of numbered square tiles in random order with one tile missing. 
+2048 is a single-player sliding block puzzle game designed by Italian web developer Gabriele Cirulli.
+The objective of the game is to slide numbered tiles on a grid to combine them to create a tile with the number 2048;
+however, one can continue to play the game after reaching the goal, creating tiles with larger numbers.
 
 <a href="https://play.google.com/store/apps/details?id=com.artemchep.twopowereleven">
-  <img alt="Get Game of Fifteen on Google Play" vspace="20"
+  <img alt="Get Game of 2048 on Google Play" vspace="20"
        src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="60" />
 </a>
-<a href="http://artemchep.com/15puzzle/">
+<a href="http://artemchep.com/2048/">
   <img alt="Try online" vspace="20"
        src="https://github.com/AChep/15puzzle/raw/master/artwork/web_badge.png" height="60" />
 </a>
@@ -38,7 +38,7 @@ Checklist for creating issues:
 
 [Create new issue][1]
 
-Creating your Game of Fifteen
+Creating your Game of 2048
 ----------------
 We welcome all developers to use our source code to create applications on our platform.
 There are several things we require from **all developers** for the moment:
@@ -58,7 +58,7 @@ Releases will be numbered with the following format: `<major>.<minor>.<patch>` a
 For more information on SemVer, please visit http://semver.org/.
 
 
-[1]: https://github.com/AChep/15puzzle/issues/new
-[2]: https://github.com/AChep/15puzzle/issues?state=open
-[3]: https://github.com/AChep/15puzzle/issues?state=closed
-[4]: https://github.com/AChep/15puzzle/blob/master/LICENSE
+[1]: https://github.com/AChep/2048/issues/new
+[2]: https://github.com/AChep/2048/issues?state=open
+[3]: https://github.com/AChep/2048/issues?state=closed
+[4]: https://github.com/AChep/2048/blob/master/LICENSE
