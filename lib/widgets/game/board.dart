@@ -224,7 +224,7 @@ class _BoardWidgetState extends State<BoardWidget>
     final index = values.indexWhere((v) => v >= score);
 
     if (index == -1) {
-      return Colors.black12;
+      return Colors.white.withOpacity(0.0);
     }
 
     final hue = 360.0 * sqrt(index.toDouble() / values.length.toDouble());
@@ -287,7 +287,8 @@ class _BoardWidgetState extends State<BoardWidget>
     );
     animation.addListener(() {
       final scale = cos(animation.value * 2.0 * pi) / 2.0 + 0.5;
-      final color = Color.alphaBlend(from.withOpacity(1.0 - scale), to);
+      final color =
+          Color.alphaBlend(from.withOpacity((1.0 - scale) * from.opacity), to);
       setState(() {
         target.backgroundColor = color;
       });
@@ -334,7 +335,7 @@ class _BoardWidgetState extends State<BoardWidget>
     Chip chip,
     Point<int> from,
     Point<int> to, {
-    bool preferBlink,
+    bool preferBlink = false,
   }) {
     if (from.x != to.x && from.y != to.y || preferBlink) {
       // Chip can not be physically moved this way, play
@@ -514,7 +515,7 @@ class _BoardWidgetState extends State<BoardWidget>
     final extra = chips[chip.number];
 
     // Calculate the colors.
-    final backgroundColor = extra.backgroundColor.withOpacity(1);
+    final backgroundColor = extra.backgroundColor;
 
     final chipSize = widget.size / board.size;
     return Positioned(

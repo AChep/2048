@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:math';
 
 import 'package:encrypt/encrypt.dart' as encrypt;
@@ -44,6 +45,8 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
   final Game game = Game.instance;
 
   Board board;
+
+  int get score => board?.score ?? 0;
 
   int steps;
 
@@ -173,7 +176,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
         if (board.isEnded()) {
           final highestOne = board.highestOne();
           final isSolved = board.isSolved();
-          final isWin = highestOne >= 2048;
+          final isWin = highestOne >= 128 * pow(2, board.size);
           final now = DateTime.now().millisecondsSinceEpoch;
           final result = Result(
             steps: steps,

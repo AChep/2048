@@ -7,6 +7,8 @@ class PointSerializableWrapper extends Point<int> implements Serializable {
 
   @override
   void serialize(SerializeOutput output) {
+    assert(x != null);
+    assert(y != null);
     output.writeInt(x);
     output.writeInt(y);
   }
@@ -19,6 +21,8 @@ class PointDeserializableFactory extends DeserializableHelper<Point<int>> {
   Point<int> deserialize(SerializeInput input) {
     final x = input.readInt();
     final y = input.readInt();
+    assert(x != null);
+    assert(y != null);
     return Point(x, y);
   }
 }

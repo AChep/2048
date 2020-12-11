@@ -2,11 +2,9 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:fifteenpuzzle/config/ui.dart';
-import 'package:fifteenpuzzle/data/board.dart';
 import 'package:fifteenpuzzle/utils/platform.dart';
 import 'package:fifteenpuzzle/widgets/about/dialog.dart';
 import 'package:fifteenpuzzle/widgets/donate/dialog.dart';
-import 'package:fifteenpuzzle/widgets/game/board.dart';
 import 'package:fifteenpuzzle/widgets/game/material/page.dart';
 import 'package:flutter/material.dart' hide AboutDialog;
 import 'package:flutter/widgets.dart';
@@ -44,11 +42,16 @@ Widget createMoreBottomSheet(
                       96.0,
                     );
 
-                    return BoardWidget(
-                      board: Board.createEmpty(size),
-                      onSwipe: null,
-                      showNumbers: false,
-                      size: puzzleSize,
+                    final name = 128 * pow(2, size);
+                    return SizedBox(
+                      width: puzzleSize,
+                      height: puzzleSize,
+                      child: Center(
+                        child: Text(
+                          name.toString(),
+                          style: Theme.of(context).textTheme.headline6,
+                        ),
+                      ),
                     );
                   },
                 ),
@@ -116,7 +119,9 @@ Widget createMoreBottomSheet(
               },
               child: Text(config.useDarkTheme == null
                   ? 'System theme'
-                  : config.useDarkTheme == true ? 'Dark theme' : 'Light theme'),
+                  : config.useDarkTheme == true
+                      ? 'Dark theme'
+                      : 'Light theme'),
             ),
           ),
         ),

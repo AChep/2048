@@ -19,10 +19,15 @@ class Board extends Serializable {
 
   Board(this.size, this.score, this.chips);
 
-  factory Board.createEmpty(int size) {
+  factory Board.createComplete(int size) =>
+      Board.create(size, (n) => pow(2, n + 1));
+
+  factory Board.createEmpty(int size) => Board.create(size, (n) => 0);
+
+  factory Board.create(int size, int Function(int) factory) {
     final chips = List<Chip>.generate(size * size, (n) {
       final point = Point(n % size, n ~/ size);
-      return Chip(n, 0, 0, point);
+      return Chip(n, 0, factory(n), point);
     });
     return Board(size, 0, chips);
   }
@@ -90,7 +95,6 @@ class Board extends Serializable {
   void serialize(SerializeOutput output) {
     output.writeInt(size);
     output.writeInt(score);
-    output.writeInt(chips.length);
 
     for (final chip in chips) {
       output.writeSerializable(chip);
@@ -105,8 +109,7 @@ class BoardDeserializableFactory extends DeserializableHelper<Board> {
   Board deserialize(SerializeInput input) {
     final size = input.readInt();
     final score = input.readInt();
-    final length = input.readInt();
-    if (size == null || score == null || length == null) {
+    if (size == null || score == null) {
       return null;
     }
 
@@ -119,7 +122,7 @@ class BoardDeserializableFactory extends DeserializableHelper<Board> {
     }
 
     final chips = List<Chip>();
-    for (var i = 0; i < length; i++) {
+    for (var i = 0; i < size * size; i++) {
       final chip = input.readDeserializable(chipFactory);
       if (chip == null) {
         return null;

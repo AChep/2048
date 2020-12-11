@@ -57,7 +57,7 @@ class GameMaterialPage extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               GameScoreWidget(
-                score: presenter.board.score,
+                score: presenter.score,
               ),
               const SizedBox(width: 16.0),
               GameStepsWidget(
