@@ -44,7 +44,36 @@ class _BoardWidgetState extends State<BoardWidget>
   static const int _ANIM_DURATION_MOVE = 200;
   static const int _ANIM_DURATION_COLOR_BACKGROUND = 200;
 
+  static const double _kFriction = 0.015;
+
+  static final double _kDecelerationRate = log(0.78) / log(0.9);
+
+  static const double _initialVelocityPenetration = 3.065;
+
+  static double _decelerationForFriction(double friction) {
+    return friction * 61774.04968;
+  }
+
+  static double _flingDuration({double friction: _kFriction, double velocity}) {
+    // See mPhysicalCoeff
+    final double scaledFriction = friction * _decelerationForFriction(0.84);
+
+    // See getSplineDeceleration().
+    final double deceleration = log(0.35 * velocity.abs() / scaledFriction);
+
+    return exp(deceleration / (_kDecelerationRate - 1.0));
+  }
+
+  static double _flingOffset({double friction: _kFriction, double velocity}) {
+    var _duration = _flingDuration(friction: friction, velocity: velocity);
+    return velocity * _duration / _initialVelocityPenetration;
+  }
+
   List<_Chip> chips;
+
+  Function(double, double) _onPanEndDelegate;
+
+  Function(double, double) _onPanUpdateDelegate;
 
   bool _isSpeedRunModeEnabled;
 
@@ -491,20 +520,11 @@ class _BoardWidgetState extends State<BoardWidget>
       child: widget.onSwipe != null
           ? GestureDetector(
               child: boardStack,
-              onVerticalDragEnd: (DragEndDetails details) {
-                if (details.primaryVelocity < 0) {
-                  widget.onSwipe(Point(0, -1));
-                } else if (details.primaryVelocity > 0) {
-                  widget.onSwipe(Point(0, 1));
-                }
-              },
-              onHorizontalDragEnd: (details) {
-                if (details.primaryVelocity > 0) {
-                  widget.onSwipe(Point(1, 0));
-                } else if (details.primaryVelocity < 0) {
-                  widget.onSwipe(Point(-1, 0));
-                }
-              },
+              onPanStart: (DragStartDetails details) =>
+                  onPanStart(context, details),
+              onPanCancel: onPanCancel,
+              onPanUpdate: onPanUpdate,
+              onPanEnd: onPanEnd,
             )
           : null,
     );
@@ -534,6 +554,57 @@ class _BoardWidgetState extends State<BoardWidget>
           size: widget.size,
         ),
       ),
+    );
+  }
+
+  void onPanStart(BuildContext context, DragStartDetails details) {
+    if (widget.board == null || chips == null) {
+      _onPanUpdateDelegate = null;
+      _onPanEndDelegate = null;
+      return;
+    }
+
+    //
+    // Create an end delegate
+    //
+
+    _onPanEndDelegate = (double vx, double vy) {
+      final offsetX = _flingOffset(velocity: vx);
+      final offsetY = _flingOffset(velocity: vy);
+
+      final ratio = offsetX.abs() / (offsetY.abs() + 0.001);
+      if (ratio > 1.5 || ratio < 0.75) {
+        Point<int> point;
+        if (offsetX.abs() > offsetY.abs()) {
+          point = Point(offsetX.sign.toInt(), 0);
+        } else {
+          point = Point(0, offsetY.sign.toInt());
+        }
+        widget?.onSwipe(point);
+      }
+
+      // Clean-up delegates
+      _onPanEndDelegate = null;
+      _onPanUpdateDelegate = null;
+    };
+  }
+
+  void onPanCancel() {
+    _onPanEndDelegate = null;
+    _onPanUpdateDelegate = null;
+  }
+
+  void onPanUpdate(DragUpdateDetails details) {
+    _onPanUpdateDelegate?.call(
+      details.delta.dx,
+      details.delta.dy,
+    );
+  }
+
+  void onPanEnd(DragEndDetails details) {
+    _onPanEndDelegate?.call(
+      details.velocity.pixelsPerSecond.dx,
+      details.velocity.pixelsPerSecond.dy,
     );
   }
 }
