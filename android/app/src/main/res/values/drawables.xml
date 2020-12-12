@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <drawable name="ic_background">#FF00796B</drawable>
     <drawable name="launch_background">@color/color_background</drawable>
 
 </resources>
