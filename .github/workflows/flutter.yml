@@ -89,14 +89,14 @@ jobs:
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: web.zip
-        asset_name: 15puzzle-web-${{ steps.vars.outputs.tag }}.zip
+        asset_name: 2048-web-${{ steps.vars.outputs.tag }}.zip
         asset_content_type: application/zip
     - name: Upload release android-aab
       uses: actions/upload-release-asset@v1
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: build/app/outputs/bundle/playstoreRelease/app-playstore-release.aab
-        asset_name: 15puzzle-android-${{ steps.vars.outputs.tag }}.aab
+        asset_name: 2048-android-${{ steps.vars.outputs.tag }}.aab
         asset_content_type: application/zip
     - name: upload to play store
       uses: r0adkll/upload-google-play@v1
