@@ -117,7 +117,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
     });
   }
 
-  Board _createBoard(int size) => game.spawn(Board.createEmpty(size));
+  Board _createBoard(int size) => game.spawnMany(Board.createEmpty(size), 2);
 
   void playStop() {
     if (isPlaying()) {

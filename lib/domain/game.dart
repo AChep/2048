@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:fifteenpuzzle/data/board.dart';
 import 'package:fifteenpuzzle/data/chip.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
 
@@ -11,6 +12,8 @@ abstract class Game {
   Tuple2<bool, Board> swipe(Board board, {@required Point<int> point});
 
   Board spawn(Board board);
+
+  Board spawnMany(Board board, int number);
 }
 
 class _GameImpl implements Game {
@@ -101,6 +104,13 @@ class _GameImpl implements Game {
 
     var tmpBoard = Board(board.size, board.score + scoreDelta, chips);
     return Tuple2(true, spawn(tmpBoard));
+  }
+
+  @override
+  Board spawnMany(Board board, int number) {
+    if (number <= 0) {
+      return board;
+    } else return spawnMany(spawn(board), number - 1);
   }
 
   @override
