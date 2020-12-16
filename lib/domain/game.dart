@@ -2,7 +2,7 @@ import 'dart:math';
 
 import 'package:fifteenpuzzle/data/board.dart';
 import 'package:fifteenpuzzle/data/chip.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart' hide Chip;
 import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
 
