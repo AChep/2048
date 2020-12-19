@@ -107,7 +107,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
       steps = 0;
       // Initialize empty board.
       const size = 4;
-      board = _createBoard(size);
+      board = _createShowcaseBoard(size);
     }
 
     setState(() {
@@ -116,6 +116,8 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
       this.board = board;
     });
   }
+
+  Board _createShowcaseBoard(int size) => Board.createLoose(size);
 
   Board _createBoard(int size) => game.spawnMany(Board.createEmpty(size), 2);
 
@@ -151,7 +153,7 @@ class GamePresenterWidgetState extends State<GamePresenterWidget>
     setState(() {
       time = TIME_STOPPED;
       steps = 0;
-      board = _createBoard(size);
+      board = _createShowcaseBoard(size);
     });
   }
 
