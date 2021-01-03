@@ -115,13 +115,7 @@ class BoardDeserializableFactory extends DeserializableHelper<Board> {
       return null;
     }
 
-    const pointFactory = PointDeserializableFactory();
     const chipFactory = ChipDeserializableFactory();
-
-    final blank = input.readDeserializable(pointFactory);
-    if (blank == null) {
-      return null;
-    }
 
     final chips = List<Chip>();
     for (var i = 0; i < size * size; i++) {
