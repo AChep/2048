@@ -17,7 +17,7 @@ The source code is based on the [Game of Fifteen][5].
   <img alt="Get Game of 2048 on Google Play" vspace="20"
        src="https://play.google.com/intl/en_us/badges/images/generic/en-play-badge.png" height="60" />
 </a>
-<a href="http://artemchep.com/2048/">
+<a href="http://gh.artemchep.com/2048/">
   <img alt="Try online" vspace="20"
        src="https://github.com/AChep/15puzzle/raw/master/artwork/web_badge.png" height="60" />
 </a>
