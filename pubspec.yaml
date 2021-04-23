@@ -1,4 +1,4 @@
-name: fifteenpuzzle
+name: twopowereleven
 description: A new Flutter application.
 
 # The following defines the version and build number for your application.
@@ -19,26 +19,16 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.0
-<<<<<<< HEAD
   tuple: ^1.0.3
   auto_size_text: ^2.1.0
-  shared_preferences: ^0.5.12+4
-  in_app_purchase: ^0.3.4+16
-  fluttertoast: ^7.1.6
-=======
   shared_preferences: ^2.0.3
   in_app_purchase: ^0.5.0
   fluttertoast: ^7.1.8
->>>>>>> 16902af (Update dependencies)
   url_launcher: ^5.7.10
   share: ^2.0.0
   color: ^2.1.1
   encrypt: ^4.1.0
-<<<<<<< HEAD
-  package_info: ^0.4.3+2
-=======
   package_info: ^2.0.0
->>>>>>> 16902af (Update dependencies)
 
 dev_dependencies:
   flutter_test:
