@@ -40,7 +40,7 @@ class _BoardWidgetState extends State<BoardWidget>
   static const num _ANIM_DURATION_MULTIPLIER_NORMAL = 1.0;
   static const num _ANIM_DURATION_MULTIPLIER_SPEED_RUN = 0.6;
 
-  static const int _ANIM_DURATION_BLINK_HALF = 200;
+  static const int _ANIM_DURATION_BLINK_HALF = 100;
   static const int _ANIM_DURATION_MOVE = 200;
   static const int _ANIM_DURATION_COLOR_BACKGROUND = 200;
 
@@ -225,17 +225,17 @@ class _BoardWidgetState extends State<BoardWidget>
         );
       }
 
-      extra.identity = chip.identity;
-
       // Animate the color change!
       if (chip.score > 0) {
         final color = _getColorFor(score: chip.score);
         final wasIdentity = extra.identity;
         if (wasIdentity != chip.identity) {
-          if (extra.backgroundColor != color)
+          if (extra.backgroundColor != color) {
+            _disposeAnimation(chip, _ANIM_COLOR_BACKGROUND_TAG);
             setState(() {
               extra.backgroundColor = color;
             });
+          }
         } else {
           _startColorBackgroundAnimation(chip,
               from: extra.backgroundColor, to: color);
@@ -243,6 +243,8 @@ class _BoardWidgetState extends State<BoardWidget>
       }
       final opacity = _getOpacityFor(score: chip.score);
       _startOpacityAnimation(chip, from: extra.opacity, to: opacity);
+
+      extra.identity = chip.identity;
     }
   }
 
@@ -299,6 +301,14 @@ class _BoardWidgetState extends State<BoardWidget>
   }
 
   void _startColorBackgroundAnimation(Chip chip, {Color from, Color to}) {
+    final target = chips[chip.number];
+    if (from == to) {
+      _disposeAnimation(chip, _ANIM_COLOR_BACKGROUND_TAG);
+      // just in case, if the actual background color differs.
+      target.backgroundColor = to;
+      return;
+    }
+
     final duration = Duration(
         milliseconds:
             _applyAnimationMultiplier(_ANIM_DURATION_COLOR_BACKGROUND));
@@ -309,7 +319,6 @@ class _BoardWidgetState extends State<BoardWidget>
       vsync: this,
     );
 
-    final target = chips[chip.number];
     final animation = CurvedAnimation(
       parent: controller,
       curve: curve,
