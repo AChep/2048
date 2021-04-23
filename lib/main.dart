@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:fifteenpuzzle/config/ui.dart';
-import 'package:fifteenpuzzle/play_games.dart';
-import 'package:fifteenpuzzle/utils/platform.dart';
-import 'package:fifteenpuzzle/widgets/game/page.dart';
+import 'package:twopowereleven/config/ui.dart';
+import 'package:twopowereleven/play_games.dart';
+import 'package:twopowereleven/utils/platform.dart';
+import 'package:twopowereleven/widgets/game/page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';

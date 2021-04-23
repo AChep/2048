@@ -1,7 +1,7 @@
-import 'package:fifteenpuzzle/data/result.dart';
-import 'package:fifteenpuzzle/links.dart';
-import 'package:fifteenpuzzle/play_games.dart';
-import 'package:fifteenpuzzle/widgets/game/format.dart';
+import 'package:twopowereleven/data/result.dart';
+import 'package:twopowereleven/links.dart';
+import 'package:twopowereleven/play_games.dart';
+import 'package:twopowereleven/widgets/game/format.dart';
 import 'package:flutter/material.dart';
 import 'package:share/share.dart';
 
@@ -21,8 +21,8 @@ class GameVictoryDialog extends StatelessWidget {
     final phrase = result.isSolved
         ? "solved"
         : result.isWin
-        ? "successfully completed"
-        : "tried to complete";
+            ? "successfully completed"
+            : "tried to complete";
     final actions = <Widget>[
       new FlatButton(
         child: new Text("Share"),

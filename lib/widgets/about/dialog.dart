@@ -1,5 +1,5 @@
-import 'package:fifteenpuzzle/links.dart';
-import 'package:fifteenpuzzle/utils/url.dart';
+import 'package:twopowereleven/links.dart';
+import 'package:twopowereleven/utils/url.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:package_info/package_info.dart';

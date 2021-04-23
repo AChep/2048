@@ -1,14 +1,14 @@
 import 'dart:math';
 
-import 'package:fifteenpuzzle/config/ui.dart';
-import 'package:fifteenpuzzle/widgets/game/board.dart';
-import 'package:fifteenpuzzle/widgets/game/material/control.dart';
-import 'package:fifteenpuzzle/widgets/game/material/score.dart';
-import 'package:fifteenpuzzle/widgets/game/material/sheets.dart';
-import 'package:fifteenpuzzle/widgets/game/material/steps.dart';
-import 'package:fifteenpuzzle/widgets/game/material/stopwatch.dart';
-import 'package:fifteenpuzzle/widgets/game/presenter/main.dart';
-import 'package:fifteenpuzzle/widgets/icons/app.dart';
+import 'package:twopowereleven/config/ui.dart';
+import 'package:twopowereleven/widgets/game/board.dart';
+import 'package:twopowereleven/widgets/game/material/control.dart';
+import 'package:twopowereleven/widgets/game/material/score.dart';
+import 'package:twopowereleven/widgets/game/material/sheets.dart';
+import 'package:twopowereleven/widgets/game/material/steps.dart';
+import 'package:twopowereleven/widgets/game/material/stopwatch.dart';
+import 'package:twopowereleven/widgets/game/presenter/main.dart';
+import 'package:twopowereleven/widgets/icons/app.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';

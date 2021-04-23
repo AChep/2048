@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:fifteenpuzzle/widgets/auto_size_text.dart';
-import 'package:fifteenpuzzle/widgets/game/format.dart';
-import 'package:fifteenpuzzle/widgets/icons/stopwatch.dart';
+import 'package:twopowereleven/widgets/auto_size_text.dart';
+import 'package:twopowereleven/widgets/game/format.dart';
+import 'package:twopowereleven/widgets/icons/stopwatch.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -86,7 +86,8 @@ class _GameStopwatchWidgetState extends State<GameStopwatchWidget>
         ? DateTime.now().millisecondsSinceEpoch - widget.time
         : 0;
     final timeStr = widget.timeFormatter(time);
-    final timeStrAtStartOfMinute = widget.timeFormatter(time - time % (1000 * 60));
+    final timeStrAtStartOfMinute =
+        widget.timeFormatter(time - time % (1000 * 60));
 
     return AnimatedBuilder(
       animation: animation,

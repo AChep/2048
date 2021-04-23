@@ -1,8 +1,8 @@
-import 'package:fifteenpuzzle/data/result.dart';
-import 'package:fifteenpuzzle/play_games.dart';
-import 'package:fifteenpuzzle/widgets/game/material/page.dart';
-import 'package:fifteenpuzzle/widgets/game/material/victory.dart';
-import 'package:fifteenpuzzle/widgets/game/presenter/main.dart';
+import 'package:twopowereleven/data/result.dart';
+import 'package:twopowereleven/play_games.dart';
+import 'package:twopowereleven/widgets/game/material/page.dart';
+import 'package:twopowereleven/widgets/game/material/victory.dart';
+import 'package:twopowereleven/widgets/game/presenter/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';

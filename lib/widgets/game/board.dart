@@ -1,8 +1,8 @@
 import 'dart:math';
 
-import 'package:fifteenpuzzle/data/board.dart';
-import 'package:fifteenpuzzle/data/chip.dart';
-import 'package:fifteenpuzzle/widgets/game/chip.dart';
+import 'package:twopowereleven/data/board.dart';
+import 'package:twopowereleven/data/chip.dart';
+import 'package:twopowereleven/widgets/game/chip.dart';
 import 'package:flutter/material.dart' hide Chip;
 import 'package:flutter/widgets.dart';
 

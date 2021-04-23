@@ -1,7 +1,7 @@
 import 'dart:math';
 
-import 'package:fifteenpuzzle/data/board.dart';
-import 'package:fifteenpuzzle/data/chip.dart';
+import 'package:twopowereleven/data/board.dart';
+import 'package:twopowereleven/data/chip.dart';
 import 'package:flutter/material.dart' hide Chip;
 import 'package:meta/meta.dart';
 import 'package:tuple/tuple.dart';
@@ -110,7 +110,8 @@ class _GameImpl implements Game {
   Board spawnMany(Board board, int number) {
     if (number <= 0) {
       return board;
-    } else return spawnMany(spawn(board), number - 1);
+    } else
+      return spawnMany(spawn(board), number - 1);
   }
 
   @override

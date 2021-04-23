@@ -1,5 +1,5 @@
-import 'package:fifteenpuzzle/data/chip.dart';
-import 'package:fifteenpuzzle/widgets/auto_size_text.dart';
+import 'package:twopowereleven/data/chip.dart';
+import 'package:twopowereleven/widgets/auto_size_text.dart';
 import 'package:flutter/material.dart' hide Chip;
 
 class ChipWidget extends StatelessWidget {

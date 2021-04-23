@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'dart:math';
 
-import 'package:fifteenpuzzle/config/ui.dart';
-import 'package:fifteenpuzzle/utils/platform.dart';
-import 'package:fifteenpuzzle/widgets/about/dialog.dart';
-import 'package:fifteenpuzzle/widgets/donate/dialog.dart';
-import 'package:fifteenpuzzle/widgets/game/material/page.dart';
+import 'package:twopowereleven/config/ui.dart';
+import 'package:twopowereleven/utils/platform.dart';
+import 'package:twopowereleven/widgets/about/dialog.dart';
+import 'package:twopowereleven/widgets/donate/dialog.dart';
+import 'package:twopowereleven/widgets/game/material/page.dart';
 import 'package:flutter/material.dart' hide AboutDialog;
 import 'package:flutter/widgets.dart';
 

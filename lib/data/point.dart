@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fifteenpuzzle/utils/serializable.dart';
+import 'package:twopowereleven/utils/serializable.dart';
 
 class PointSerializableWrapper extends Point<int> implements Serializable {
   PointSerializableWrapper(Point<int> point) : super(point.x, point.y);

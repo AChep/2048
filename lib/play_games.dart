@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:fifteenpuzzle/utils/platform.dart';
+import 'package:twopowereleven/utils/platform.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';

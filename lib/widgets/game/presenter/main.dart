@@ -3,10 +3,10 @@ import 'dart:developer';
 import 'dart:math';
 
 import 'package:encrypt/encrypt.dart' as encrypt;
-import 'package:fifteenpuzzle/data/board.dart';
-import 'package:fifteenpuzzle/data/result.dart';
-import 'package:fifteenpuzzle/domain/game.dart';
-import 'package:fifteenpuzzle/utils/serializable.dart';
+import 'package:twopowereleven/data/board.dart';
+import 'package:twopowereleven/data/result.dart';
+import 'package:twopowereleven/domain/game.dart';
+import 'package:twopowereleven/utils/serializable.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 

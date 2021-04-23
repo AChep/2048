@@ -1,8 +1,8 @@
 import 'dart:collection';
 import 'dart:math';
 
-import 'package:fifteenpuzzle/data/point.dart';
-import 'package:fifteenpuzzle/utils/serializable.dart';
+import 'package:twopowereleven/data/point.dart';
+import 'package:twopowereleven/utils/serializable.dart';
 import 'package:meta/meta.dart';
 
 import 'chip.dart';

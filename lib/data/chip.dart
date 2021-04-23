@@ -1,6 +1,6 @@
 import 'dart:math';
 
-import 'package:fifteenpuzzle/utils/serializable.dart';
+import 'package:twopowereleven/utils/serializable.dart';
 import 'package:meta/meta.dart';
 
 import 'point.dart';
