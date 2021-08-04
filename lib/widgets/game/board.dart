@@ -1,10 +1,11 @@
 import 'dart:math';
 
+import 'package:flutter/gestures.dart';
+import 'package:flutter/material.dart' hide Chip;
+import 'package:flutter/widgets.dart';
 import 'package:twopowereleven/data/board.dart';
 import 'package:twopowereleven/data/chip.dart';
 import 'package:twopowereleven/widgets/game/chip.dart';
-import 'package:flutter/material.dart' hide Chip;
-import 'package:flutter/widgets.dart';
 
 class BoardWidget extends StatefulWidget {
   final Board board;
@@ -534,6 +535,7 @@ class _BoardWidgetState extends State<BoardWidget>
               onPanCancel: onPanCancel,
               onPanUpdate: onPanUpdate,
               onPanEnd: onPanEnd,
+              dragStartBehavior: DragStartBehavior.down,
             )
           : null,
     );
