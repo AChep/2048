@@ -47,12 +47,6 @@ class GameMaterialPage extends StatelessWidget {
       final statusWidget = Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          GameStopwatchWidget(
-            time: presenter.time,
-            fontSize: orientation == Orientation.landscape && !isLargeScreen
-                ? 56.0
-                : 72.0,
-          ),
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
@@ -60,9 +54,18 @@ class GameMaterialPage extends StatelessWidget {
                 score: presenter.score,
               ),
               const SizedBox(width: 16.0),
-              GameStepsWidget(
-                steps: presenter.steps,
-              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GameStepsWidget(
+                    steps: presenter.steps,
+                  ),
+                  GameStopwatchWidget(
+                    time: presenter.time,
+                    fontSize: 14.0,
+                  ),
+                ],
+              )
             ],
           ),
         ],

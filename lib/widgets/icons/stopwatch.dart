@@ -34,7 +34,7 @@ class _StopwatchPainter extends CustomPainter {
 
   _StopwatchPainter(this.millis, final Color color) : stopwatchPaint = Paint() {
     stopwatchPaint.color = color;
-    stopwatchPaint.strokeWidth = 2.0;
+    stopwatchPaint.strokeWidth = 1.5;
     stopwatchPaint.style = PaintingStyle.stroke;
     stopwatchPaint.strokeCap = StrokeCap.round;
   }

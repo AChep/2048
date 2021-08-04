@@ -15,13 +15,13 @@ class GameScoreWidget extends StatelessWidget {
     );
     return Material(
       shape: shape,
-      color: Theme.of(context).accentColor,
       elevation: 1,
       child: Padding(
         padding: EdgeInsets.symmetric(horizontal: 6.0),
         child: Text(
           '$score',
-          style: Theme.of(context).accentTextTheme.headline6.copyWith(
+          style: Theme.of(context).textTheme.headline6.copyWith(
+                fontSize: 42.0,
                 fontWeight: FontWeight.bold,
               ),
         ),

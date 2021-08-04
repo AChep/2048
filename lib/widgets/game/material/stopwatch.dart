@@ -1,10 +1,10 @@
 import 'dart:async';
 
+import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:twopowereleven/widgets/auto_size_text.dart';
 import 'package:twopowereleven/widgets/game/format.dart';
 import 'package:twopowereleven/widgets/icons/stopwatch.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 /// Widget shows the current time of
 /// a game.
@@ -101,24 +101,18 @@ class _GameStopwatchWidgetState extends State<GameStopwatchWidget>
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          SizedBox(
-            width: 220.0,
-            height: 108.0,
-            child: AutoSizeText(
-              timeStrAtStartOfMinute,
-              timeStr,
-              maxLines: 1,
-              style: Theme.of(context).textTheme.display3.copyWith(
-                    fontSize: widget.fontSize,
-                    color: Theme.of(context).textTheme.title.color,
-                  ),
+          Text(
+            timeStr,
+            maxLines: 1,
+            style: Theme.of(context).textTheme.display1.copyWith(
+              fontSize: widget.fontSize,
             ),
           ),
           const SizedBox(width: 16.0),
           StopwatchIcon(
-            size: 24,
+            size: 14,
             millis: time,
-            color: Theme.of(context).iconTheme.color,
+            color: Theme.of(context).textTheme.display1.color,
           ),
         ],
       ),

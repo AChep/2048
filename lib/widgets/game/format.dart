@@ -6,7 +6,7 @@ String formatElapsedTime(int millis) {
   final m = seconds ~/ 60 % 60;
   final s = seconds % 60;
 
-  final suffix = '${s <= 9 ? '0$s' : '$s'}.$fraction';
+  final suffix = '${s <= 9 ? '0$s' : '$s'}';
   if (h > 0) {
     return '$h:${_withLeadingZero(m)}:$suffix';
   } else {
